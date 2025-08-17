@@ -1,293 +1,124 @@
-m<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sivaprakash Sivakumar • Portfolio</title>
-  <meta name="description" content="Sivaprakash Sivakumar – Developer • Cybersecurity • AI/ML • Selected projects, experience, and contact." />
+  <title>Your Name • Link Hub</title>
+  <meta name="description" content="Your personal link hub – roles, links, and socials." />
   <meta name="color-scheme" content="light dark" />
   <link rel="preload" as="image" href="assets/hero.jpg" />
   <style>
     :root{
       --bg: #0b0e14;
       --surface: #121826;
-      --muted: #8b9db2;
+      --muted: #9fb0c7;
       --text: #f6f7fb;
       --brand: #7c5cff; /* primary */
       --brand-2:#22d3ee; /* accent */
       --ring: rgba(124,92,255,.35);
       --card: #0f1422;
       --border: #1f2a44;
-      --shadow: 0 10px 25px rgba(0,0,0,.35);
+      --shadow: 0 10px 30px rgba(2,8,23,.35);
       --radius: 16px;
     }
-    @media (prefers-color-scheme: light){
-      :root{
-        --bg: #f7f9fc;
-        --surface: #ffffff;
-        --muted: #55657a;
-        --text: #0b1220;
-        --card: #ffffff;
-        --border: #e7edf5;
-        --shadow: 0 10px 30px rgba(16,24,40,.06);
-      }
-    }
-
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0; font: 16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial; color:var(--text); background:radial-gradient(1200px 600px at 10% -10%, rgba(124,92,255,.15), transparent 60%), radial-gradient(900px 500px at 110% 10%, rgba(34,211,238,.18), transparent 60%), var(--bg);
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial;
+      color:var(--text);
+      background: radial-gradient(1200px 800px at 20% 10%, rgba(124,92,255,.15), transparent),
+                  radial-gradient(1000px 700px at 80% 90%, rgba(34,211,238,.12), transparent),
+                  linear-gradient(180deg, #0b0e14, #0a0f1e 60%, #0b1222);
+      display:grid; place-items:center; padding:24px;
     }
-    a{color:inherit;text-decoration:none}
-    .container{max-width:1100px;margin:auto;padding:24px}
-
-    /* Header/Nav */
-    .nav{position:sticky;top:0;z-index:30;backdrop-filter:saturate(180%) blur(10px);background:linear-gradient(180deg, rgba(14,18,30,.75), rgba(14,18,30,.45)); border-bottom:1px solid var(--border)}
-    @media(prefers-color-scheme:light){.nav{background:linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,.6));}}
-    .nav .wrap{display:flex;align-items:center;gap:18px;justify-content:space-between}
-    .brand{display:flex;align-items:center;gap:12px;font-weight:700}
-    .brand .dot{width:12px;height:12px;border-radius:999px;background:linear-gradient(135deg,var(--brand),var(--brand-2));box-shadow:0 0 0 4px var(--ring)}
-    .links{display:flex;gap:18px;flex-wrap:wrap}
-    .links a{opacity:.9}
-    .links a:hover{opacity:1}
-    .cta{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:#0b0e14; font-weight:600; box-shadow:var(--shadow)}
-
-    /* Hero */
-    .hero{display:grid;grid-template-columns: 1.2fr .8fr; gap:28px; align-items:center; padding-top:28px}
-    .hero h1{font-size:clamp(32px, 4vw, 48px); line-height:1.15; margin:0 0 10px}
-    .hero p{margin:0 0 18px; color:var(--muted)}
-    .hero .badges{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 22px}
-    .badge{border:1px solid var(--border);padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.02)}
-    .hero-card{position:relative; border:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01)); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow)}
-    .hero-card img{display:block; width:100%; height:100%; object-fit:cover}
-    .hero-card .glow{position:absolute; inset:auto -30% -30% auto; width:60%; height:60%; background:radial-gradient(closest-side, rgba(124,92,255,.45), transparent 60%); filter: blur(20px)}
-
-    /* Section headings */
-    .section{margin-top:48px}
-    .section h2{font-size:clamp(22px,2.2vw,28px);margin:0 0 16px}
-    .muted{color:var(--muted)}
-
-    /* Projects grid */
-    .grid{display:grid; grid-template-columns: repeat(3, 1fr); gap:18px}
-    @media (max-width:980px){.grid{grid-template-columns: repeat(2, 1fr)}}
-    @media (max-width:640px){.hero{grid-template-columns:1fr}.grid{grid-template-columns: 1fr}}
-
-    .card{position:relative;border:1px solid var(--border);background:var(--card);border-radius:var(--radius);overflow:hidden;transition:transform .15s ease, box-shadow .2s ease}
-    .card:hover{transform:translateY(-4px); box-shadow:0 14px 30px rgba(0,0,0,.25)}
-    .card img{width:100%;aspect-ratio:16/9;object-fit:cover; display:block}
-    .card .body{padding:14px 14px 16px}
-    .chip{font-size:12px;border:1px solid var(--border); padding:3px 8px; border-radius:999px; color:var(--muted)}
-    .card h3{margin:8px 0 6px; font-size:18px}
-    .meta{display:flex;gap:10px;flex-wrap:wrap; align-items:center}
-    .meta a{text-decoration:underline dotted 1px}
-
-    /* Timeline */
-    .timeline{position:relative;margin-left:6px}
-    .timeline::before{content:"";position:absolute;left:10px;top:0;bottom:0;width:2px;background:linear-gradient(var(--brand),transparent)}
-    .timeline-item{position:relative;padding-left:36px;margin:16px 0}
-    .timeline-item::marker{content:""}
-    .timeline-item .dot{position:absolute;left:2px;top:4px;width:16px;height:16px;border-radius:999px;background:linear-gradient(135deg,var(--brand),var(--brand-2)); box-shadow:0 0 0 4px rgba(124,92,255,.15)}
-    .timeline-item h4{margin:0 0 4px}
-    .timeline-item p{margin:0;color:var(--muted)}
-
-    /* Gallery */
-    .gallery{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
-    .gallery img{width:100%;aspect-ratio:1/1;border-radius:10px;object-fit:cover;border:1px solid var(--border)}
-    @media(max-width:980px){.gallery{grid-template-columns:repeat(4,1fr)}}
-    @media(max-width:640px){.gallery{grid-template-columns:repeat(2,1fr)}}
-
-    /* Contact */
-    form{display:grid;gap:12px;max-width:680px}
-    input,textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,.02);color:var(--text)}
-    input:focus,textarea:focus{outline:2px solid var(--ring); border-color:transparent}
-    button{all:unset;display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:#0b0e14; font-weight:700; cursor:pointer; box-shadow:var(--shadow)}
-
-    /* Footer */
-    footer{margin:48px 0 8px; color:var(--muted)}
-    .sep{height:1px;background:linear-gradient(90deg, transparent, var(--border), transparent); margin:28px 0}
+    .wrap{width:100%; max-width: 760px}
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+      border:1px solid var(--border);
+      backdrop-filter: blur(10px);
+      border-radius: calc(var(--radius) + 8px);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    header{padding: 36px 28px 8px; text-align:center}
+    .name{font-size: clamp(28px, 2.5vw + 14px, 40px); font-weight:800; letter-spacing:.2px; margin: 4px 0}
+    .role{color:var(--muted); font-size: clamp(14px, 1vw + 10px, 18px); margin-top: 6px}
+    .avatar{
+      width: 128px; height:128px; border-radius: 50%;
+      display:inline-grid; place-items:center; margin: 12px auto 8px; position:relative;
+      border:3px solid transparent;
+      background: linear-gradient(var(--card), var(--card)) padding-box,
+                 conic-gradient(from 180deg at 50% 50%, var(--brand), var(--brand-2), var(--brand)) border-box;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    .avatar img{width:100%; height:100%; object-fit:cover; border-radius:50%}
+    .links{display:grid; gap:14px; padding: 20px;}
+    @media (min-width:560px){ .links{grid-template-columns: 1fr; padding: 28px} }
+    .btn{
+      display:flex; align-items:center; gap:14px; width:100%;
+      padding:18px 18px; border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
+      border:1px solid var(--border);
+      color:var(--text); text-decoration:none; font-weight:600;
+      transition: transform .12s ease, border-color .12s ease, background .2s ease;
+      outline: none; position:relative;
+    }
+    .btn:focus{ box-shadow: 0 0 0 6px var(--ring); border-color: transparent; }
+    .btn:hover{ transform: translateY(-2px); border-color: rgba(124,92,255,.6); }
+    .btn svg{ width:24px; height:24px; flex:0 0 24px }
+    .sub{ color:var(--muted); font-weight:500; margin-left:auto; font-size: 14px }
+    footer{display:flex; justify-content:center; gap:14px; padding: 8px 0 26px; color:var(--muted); font-size:12px}
+    .tiny{opacity:.75}
+    .row{display:flex; gap:10px; justify-content:center}
+    .chip{
+      display:inline-flex; align-items:center; gap:8px; font-size:12px;
+      padding:6px 10px; border:1px dashed var(--border); border-radius:999px; color:var(--muted);
+      background: rgba(255,255,255,.02);
+    }
+    .chip svg{width:14px;height:14px}
   </style>
 </head>
 <body>
-  <!-- Nav -->
-  <header class="nav">
-    <div class="container wrap">
-      <div class="brand"><span class="dot" aria-hidden="true"></span> <span>Sivaprakash</span></div>
-      <nav class="links" aria-label="Primary">
-        <a href="#projects">Projects</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#experience">Experience</a>
-        <a href="#contact">Contact</a>
-        <a class="cta" href="https://github.com/sivaprakash-stackpy" target="_blank" rel="noopener">GitHub</a>
-        <a class="cta" href="https://medium.com/@sivaprakash4112" target="_blank" rel="noopener">Medium</a>
-      </nav>
-    </div>
-  </header>
-
-  <main class="container">
-    <!-- Hero -->
-    <section class="hero" aria-label="Intro">
-      <div>
-        <h1>Building secure, human‑friendly software.</h1>
-        <p class="muted">Python • Cybersecurity • AI/ML • Streamlit • URL Threat Intelligence. I ship reliable tools and clean UIs, with an eye on security and performance.</p>
-        <div class="badges">
-          <span class="badge">TensorFlow</span>
-          <span class="badge">Streamlit</span>
-          <span class="badge">Vercel</span>
-          <span class="badge">Next.js (learning)</span>
-        </div>
-        <div style="display:flex; gap:12px; flex-wrap:wrap">
-          <a class="cta" href="#projects">View Projects</a>
-          <a class="cta" href="assets/SIVAPRAKASH SIVAKUMAR - IT.pdf">Download CV</a>
-        </div>
+  <main class="wrap card" role="main">
+    <header>
+      <!-- Replace avatar.jpg with your own photo path or remote URL -->
+      <div class="avatar" aria-hidden="true">
+        <img src="https://avatars.githubusercontent.com/u/9919?s=200&v=4" alt="Your avatar" />
       </div>
-      <figure class="hero-card" aria-label="Hero image">
-        <img src="assets/hero.jpg" alt="Workspace with laptop, code and cybersecurity visuals" />
-        <div class="glow" aria-hidden="true"></div>
-      </figure>
-    </section>
-
-    <div class="sep" role="separator" aria-hidden="true"></div>
-
-    <!-- Projects -->
-    <section id="projects" class="section" aria-label="Projects">
-      <h2>Featured Projects</h2>
-      <p class="muted">A few things I’ve built and shipped.</p>
-      <div class="grid" role="list">
-        <!-- Project Card 1 -->
-        <article class="card" role="listitem">
-          <img src="assets/offtech.jpg" alt="Screenshot of OFFTECh Streamlit app classifying URLs" loading="lazy" />
-          <div class="body">
-            <div class="meta">
-              <span class="chip">Python</span>
-              <span class="chip">Streamlit</span>
-              <a href="#" aria-label="View live demo">Live</a>
-              <a href="https://github.com/sivaprakash-stackpy" target="_blank" rel="noopener">Code</a>
-            </div>
-            <h3>OFFTECh URL Risk Analyzer</h3>
-            <p class="muted">Extracts links from pages, classifies phishing/defacement using TensorFlow with heuristic fallback, exports JSON reports.</p>
-          </div>
-        </article>
-        <!-- Project Card 2 -->
-        <article class="card" role="listitem">
-          <img src="assets/portfolio.jpg" alt="Modern portfolio UI screenshot" loading="lazy" />
-          <div class="body">
-            <div class="meta">
-              <span class="chip">HTML/CSS/JS</span>
-              <a href="#" aria-label="View live site">Live</a>
-              <a href="https://github.com/sivaprakash-stackpy/Portfolio" target="_blank" rel="noopener">Code</a>
-            </div>
-            <h3>Personal Portfolio</h3>
-            <p class="muted">Responsive, accessible, fast. Built with progressive enhancement and subtle animations.</p>
-          </div>
-        </article>
-        <!-- Project Card 3 -->
-        <article class="card" role="listitem">
-          <img src="assets/automation.jpg" alt="Data automation workflow diagram" loading="lazy" />
-          <div class="body">
-            <div class="meta">
-              <span class="chip">Automation</span>
-              <span class="chip">APIs</span>
-              <a href="#" aria-label="Read case study">Case Study</a>
-            </div>
-            <h3>Automation Toolkit</h3>
-            <p class="muted">Python utilities for scraping, parsing, and reporting with robust retries and logging.</p>
-          </div>
-        </article>
+      <h1 class="name">Your Name</h1>
+      <p class="role">Your Role / Tagline</p>
+      <div class="row" aria-label="tags">
+        <span class="chip" title="Primary focus">
+          <!-- code icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
+          Software • Security • AI
+        </span>
       </div>
-    </section>
+    </header>
 
-    <div class="sep" role="separator" aria-hidden="true"></div>
+    <section class="links" aria-label="primary links">
+      <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noopener">
+        <!-- briefcase icon -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><path d="M2 13h20"/></svg>
+        Work @ LinkedIn
+        <span class="sub">Open</span>
+      </a>
 
-    <!-- Gallery -->
-    <section id="gallery" class="section" aria-label="Gallery">
-      <h2>Gallery</h2>
-      <p class="muted">Drop your screenshots or photos into <code>/assets</code> and update the filenames below.</p>
-      <div class="gallery">
-        <img src="assets/shot1.jpg" alt="Project screenshot 1" loading="lazy">
-        <img src="assets/shot2.jpg" alt="Project screenshot 2" loading="lazy">
-        <img src="assets/shot3.jpg" alt="Project screenshot 3" loading="lazy">
-        <img src="assets/shot4.jpg" alt="Project screenshot 4" loading="lazy">
-        <img src="assets/shot5.jpg" alt="Project screenshot 5" loading="lazy">
-        <img src="assets/shot6.jpg" alt="Project screenshot 6" loading="lazy">
-      </div>
-    </section>
+      <a class="btn" href="#" target="_blank" rel="noopener">
+        <!-- mic icon -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10a7 7 0 0 1-14 0"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+        Speaking @ Sessionize
+        <span class="sub">Talks</span>
+      </a>
 
-    <div class="sep" role="separator" aria-hidden="true"></div>
+      <a class="btn" href="#" target="_blank" rel="noopener">
+        <!-- star/badge icon -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.86L12 17.77l-6.18 3.23L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        GDE @ Developer Profile
+        <span class="sub">Badge</span>
+      </a>
 
-    <!-- Experience / Timeline -->
-    <section id="experience" class="section" aria-label="Experience timeline">
-      <h2>Experience</h2>
-      <ol class="timeline">
-        <li class="timeline-item">
-          <span class="dot" aria-hidden="true"></span>
-          <h4>Analyst – Merkle (Dentsu)</h4>
-          <p>Automation & Python Development • 2022–2024</p>
-        </li>
-        <li class="timeline-item">
-          <span class="dot" aria-hidden="true"></span>
-          <h4>Freelance IT Services</h4>
-          <p>Support, hardware servicing, CCTV • since 2019</p>
-        </li>
-        <li class="timeline-item">
-          <span class="dot" aria-hidden="true"></span>
-          <h4>MSc Cybersecurity – NCI</h4>
-          <p>Malware Analysis, Cryptography, Cloud Security • 2024–2025</p>
-        </li>
-      </ol>
-    </section>
-
-    <div class="sep" role="separator" aria-hidden="true"></div>
-
-    <!-- Contact -->
-    <section id="contact" class="section" aria-label="Contact form">
-      <h2>Contact</h2>
-      <form id="contact-form">
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px">
-          <input name="name" placeholder="Your name" aria-label="Your name" required>
-          <input type="email" name="email" placeholder="Your email" aria-label="Your email" required>
-        </div>
-        <textarea name="message" rows="5" placeholder="Say hello…" aria-label="Message" required></textarea>
-        <button type="submit" aria-label="Send message">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M22 2L11 13" stroke="#0b0e14" stroke-width="2"/><path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="#0b0e14" stroke-width="2"/></svg>
-          Send
-        </button>
-        <p id="form-status" class="muted" role="status" aria-live="polite"></p>
-      </form>
-    </section>
-
-    <footer>
-      <div class="sep" role="separator" aria-hidden="true"></div>
-      <p>© <span id="year"></span> Sivaprakash • Built with ❤️, deployed on Vercel.</p>
-    </footer>
-  </main>
-
-  <script>
-    // Util: year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Fake contact form handler (replace with your backend or Formspree)
-    const form = document.getElementById('contact-form');
-    const statusEl = document.getElementById('form-status');
-    form.addEventListener('submit', async (e)=>{
-      e.preventDefault();
-      statusEl.textContent = 'Sending…';
-      try{
-        // Example POST to Formspree; replace with your endpoint
-        // const res = await fetch('https://formspree.io/f/yourid', { method:'POST', body: new FormData(form) });
-        // if(!res.ok) throw new Error('Network');
-        await new Promise(r=>setTimeout(r,800));
-        form.reset();
-        statusEl.textContent = 'Thanks! I will get back to you.';
-      }catch(err){
-        statusEl.textContent = 'Something went wrong. Please email me instead.';
-      }
-    });
-
-    // Optional: simple intersection fade‑in
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{ if(e.isIntersecting){ e.target.animate([{opacity:0, transform:'translateY(8px)'},{opacity:1, transform:'translateY(0)'}], {duration:500, fill:'forwards'}); io.unobserve(e.target);} });
-    }, {threshold:.1});
-    document.querySelectorAll('.card, .timeline-item, .gallery img').forEach(el=>io.observe(el));
-  </script>
-</body>
-</html>
+      <a class="btn" href="https://medium.com/" target="_blank" rel="noopener">
+        <!-- book icon -->
+        <svg viewBox="0 0 24 24" fill="none" stroke
