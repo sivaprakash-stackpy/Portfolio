@@ -3,18 +3,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Your Name • Link Hub</title>
-  <meta name="description" content="Your personal link hub – roles, links, and socials." />
+  <title>Sivaprakash Sivakumar • Link Hub</title>
+  <meta name="description" content="Personal link hub – roles, links, and socials." />
   <meta name="color-scheme" content="light dark" />
-  <link rel="preload" as="image" href="assets/hero.jpg" />
   <style>
     :root{
       --bg: #0b0e14;
       --surface: #121826;
       --muted: #9fb0c7;
       --text: #f6f7fb;
-      --brand: #7c5cff; /* primary */
-      --brand-2:#22d3ee; /* accent */
+      --brand: #7c5cff;
+      --brand-2:#22d3ee;
       --ring: rgba(124,92,255,.35);
       --card: #0f1422;
       --border: #1f2a44;
@@ -82,15 +81,13 @@
 <body>
   <main class="wrap card" role="main">
     <header>
-      <!-- Replace avatar.jpg with your own photo path or remote URL -->
       <div class="avatar" aria-hidden="true">
-        <img src="https://avatars.githubusercontent.com/u/9919?s=200&v=4" alt="Your avatar" />
+        <img src="https://avatars.githubusercontent.com/u/583231?v=4" alt="Your avatar" />
       </div>
-      <h1 class="name">Your Name</h1>
-      <p class="role">Your Role / Tagline</p>
+      <h1 class="name">Sivaprakash Sivakumar</h1>
+      <p class="role">Software Development Engineer</p>
       <div class="row" aria-label="tags">
-        <span class="chip" title="Primary focus">
-          <!-- code icon -->
+        <span class="chip">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
           Software • Security • AI
         </span>
@@ -98,27 +95,38 @@
     </header>
 
     <section class="links" aria-label="primary links">
-      <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noopener">
-        <!-- briefcase icon -->
+      <a class="btn" href="https://www.linkedin.com/in/sivaprakash-sivakumar/" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><path d="M2 13h20"/></svg>
         Work @ LinkedIn
         <span class="sub">Open</span>
       </a>
 
-      <a class="btn" href="#" target="_blank" rel="noopener">
-        <!-- mic icon -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10a7 7 0 0 1-14 0"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
-        Speaking @ Sessionize
-        <span class="sub">Talks</span>
+      <a class="btn" href="https://medium.com/@sivaprakash4112" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M20 22H6.5A2.5 2.5 0 0 1 4 19.5V6.5A2.5 2.5 0 0 1 6.5 4H20z"/></svg>
+        Writing @ Medium
+        <span class="sub">Blog</span>
       </a>
 
-      <a class="btn" href="#" target="_blank" rel="noopener">
-        <!-- star/badge icon -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.86L12 17.77l-6.18 3.23L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        GDE @ Developer Profile
-        <span class="sub">Badge</span>
+      <a class="btn" href="https://github.com/sivaprakash-stackpy" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
+        Code @ GitHub
+        <span class="sub">Repos</span>
       </a>
 
-      <a class="btn" href="https://medium.com/" target="_blank" rel="noopener">
-        <!-- book icon -->
-        <svg viewBox="0 0 24 24" fill="none" stroke
+      <a class="btn" href="mailto:sivaprakash4112@gmail.com" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Email Me
+        <span class="sub">Contact</span>
+      </a>
+    </section>
+
+    <footer>
+      <span class="tiny">© <span id="year"></span> Sivaprakash Sivakumar</span>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
