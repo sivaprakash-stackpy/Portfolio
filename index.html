@@ -1,104 +1,292 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sivaprakash • Portfolio</title>
+  <meta name="description" content="Sivaprakash Sivakumar – Developer • Cybersecurity • AI/ML • Selected projects, experience, and contact." />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="preload" as="image" href="assets/hero.jpg" />
+  <style>
+    :root{
+      --bg: #0b0e14;
+      --surface: #121826;
+      --muted: #8b9db2;
+      --text: #f6f7fb;
+      --brand: #7c5cff; /* primary */
+      --brand-2:#22d3ee; /* accent */
+      --ring: rgba(124,92,255,.35);
+      --card: #0f1422;
+      --border: #1f2a44;
+      --shadow: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 16px;
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg: #f7f9fc;
+        --surface: #ffffff;
+        --muted: #55657a;
+        --text: #0b1220;
+        --card: #ffffff;
+        --border: #e7edf5;
+        --shadow: 0 10px 30px rgba(16,24,40,.06);
+      }
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font: 16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial; color:var(--text); background:radial-gradient(1200px 600px at 10% -10%, rgba(124,92,255,.15), transparent 60%), radial-gradient(900px 500px at 110% 10%, rgba(34,211,238,.18), transparent 60%), var(--bg);
+    }
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1100px;margin:auto;padding:24px}
+
+    /* Header/Nav */
+    .nav{position:sticky;top:0;z-index:30;backdrop-filter:saturate(180%) blur(10px);background:linear-gradient(180deg, rgba(14,18,30,.75), rgba(14,18,30,.45)); border-bottom:1px solid var(--border)}
+    @media(prefers-color-scheme:light){.nav{background:linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,.6));}}
+    .nav .wrap{display:flex;align-items:center;gap:18px;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700}
+    .brand .dot{width:12px;height:12px;border-radius:999px;background:linear-gradient(135deg,var(--brand),var(--brand-2));box-shadow:0 0 0 4px var(--ring)}
+    .links{display:flex;gap:18px;flex-wrap:wrap}
+    .links a{opacity:.9}
+    .links a:hover{opacity:1}
+    .cta{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:999px;background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:#0b0e14; font-weight:600; box-shadow:var(--shadow)}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns: 1.2fr .8fr; gap:28px; align-items:center; padding-top:28px}
+    .hero h1{font-size:clamp(32px, 4vw, 48px); line-height:1.15; margin:0 0 10px}
+    .hero p{margin:0 0 18px; color:var(--muted)}
+    .hero .badges{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 22px}
+    .badge{border:1px solid var(--border);padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.02)}
+    .hero-card{position:relative; border:1px solid var(--border); background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01)); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow)}
+    .hero-card img{display:block; width:100%; height:100%; object-fit:cover}
+    .hero-card .glow{position:absolute; inset:auto -30% -30% auto; width:60%; height:60%; background:radial-gradient(closest-side, rgba(124,92,255,.45), transparent 60%); filter: blur(20px)}
+
+    /* Section headings */
+    .section{margin-top:48px}
+    .section h2{font-size:clamp(22px,2.2vw,28px);margin:0 0 16px}
+    .muted{color:var(--muted)}
+
+    /* Projects grid */
+    .grid{display:grid; grid-template-columns: repeat(3, 1fr); gap:18px}
+    @media (max-width:980px){.grid{grid-template-columns: repeat(2, 1fr)}}
+    @media (max-width:640px){.hero{grid-template-columns:1fr}.grid{grid-template-columns: 1fr}}
+
+    .card{position:relative;border:1px solid var(--border);background:var(--card);border-radius:var(--radius);overflow:hidden;transition:transform .15s ease, box-shadow .2s ease}
+    .card:hover{transform:translateY(-4px); box-shadow:0 14px 30px rgba(0,0,0,.25)}
+    .card img{width:100%;aspect-ratio:16/9;object-fit:cover; display:block}
+    .card .body{padding:14px 14px 16px}
+    .chip{font-size:12px;border:1px solid var(--border); padding:3px 8px; border-radius:999px; color:var(--muted)}
+    .card h3{margin:8px 0 6px; font-size:18px}
+    .meta{display:flex;gap:10px;flex-wrap:wrap; align-items:center}
+    .meta a{text-decoration:underline dotted 1px}
+
+    /* Timeline */
+    .timeline{position:relative;margin-left:6px}
+    .timeline::before{content:"";position:absolute;left:10px;top:0;bottom:0;width:2px;background:linear-gradient(var(--brand),transparent)}
+    .timeline-item{position:relative;padding-left:36px;margin:16px 0}
+    .timeline-item::marker{content:""}
+    .timeline-item .dot{position:absolute;left:2px;top:4px;width:16px;height:16px;border-radius:999px;background:linear-gradient(135deg,var(--brand),var(--brand-2)); box-shadow:0 0 0 4px rgba(124,92,255,.15)}
+    .timeline-item h4{margin:0 0 4px}
+    .timeline-item p{margin:0;color:var(--muted)}
+
+    /* Gallery */
+    .gallery{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+    .gallery img{width:100%;aspect-ratio:1/1;border-radius:10px;object-fit:cover;border:1px solid var(--border)}
+    @media(max-width:980px){.gallery{grid-template-columns:repeat(4,1fr)}}
+    @media(max-width:640px){.gallery{grid-template-columns:repeat(2,1fr)}}
+
+    /* Contact */
+    form{display:grid;gap:12px;max-width:680px}
+    input,textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,.02);color:var(--text)}
+    input:focus,textarea:focus{outline:2px solid var(--ring); border-color:transparent}
+    button{all:unset;display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand-2)); color:#0b0e14; font-weight:700; cursor:pointer; box-shadow:var(--shadow)}
+
+    /* Footer */
+    footer{margin:48px 0 8px; color:var(--muted)}
+    .sep{height:1px;background:linear-gradient(90deg, transparent, var(--border), transparent); margin:28px 0}
+  </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">Portfolio</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="hamburger">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-            </div>
-        </nav>
-    </header>
+  <!-- Nav -->
+  <header class="nav">
+    <div class="container wrap">
+      <div class="brand"><span class="dot" aria-hidden="true"></span> <span>Sivaprakash</span></div>
+      <nav class="links" aria-label="Primary">
+        <a href="#projects">Projects</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+        <a class="cta" href="https://github.com/sivaprakash-stackpy" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
 
-    <main>
-        <section id="home" class="hero">
-            <div class="hero-content">
-                <h1>Hi, I'm <span class="highlight">Sivaprakash Sivakumar</span></h1>
-                <p class="subtitle">Msc in Cybersecurity Student</p>
-                <div class="cta-buttons">
-                    <a href="#projects" class="btn primary">View My Work</a>
-                    <a href="#contact" class="btn secondary">Contact Me</a>
-                </div>
-            </div>
-        </section>
+  <main class="container">
+    <!-- Hero -->
+    <section class="hero" aria-label="Intro">
+      <div>
+        <h1>Building secure, human‑friendly software.</h1>
+        <p class="muted">Python • Cybersecurity • AI/ML • Streamlit • URL Threat Intelligence. I ship reliable tools and clean UIs, with an eye on security and performance.</p>
+        <div class="badges">
+          <span class="badge">TensorFlow</span>
+          <span class="badge">Streamlit</span>
+          <span class="badge">Vercel</span>
+          <span class="badge">Next.js (learning)</span>
+        </div>
+        <div style="display:flex; gap:12px; flex-wrap:wrap">
+          <a class="cta" href="#projects">View Projects</a>
+          <a class="badge" href="/Sivaprakash_Sivakumar_CV.pdf">Download CV</a>
+        </div>
+      </div>
+      <figure class="hero-card" aria-label="Hero image">
+        <img src="assets/hero.jpg" alt="Workspace with laptop, code and cybersecurity visuals" />
+        <div class="glow" aria-hidden="true"></div>
+      </figure>
+    </section>
 
-        <section id="about" class="section">
-            <h2>About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>I'm a passionate web developer with expertise in creating beautiful and functional websites. I love turning ideas into reality through code.</p>
-                    <div class="skills">
-                        <h3>Skills</h3>
-                        <div class="skill-tags">
-                            <span>HTML5</span>
-                            <span>CSS3</span>
-                            <span>JavaScript</span>
-                            <span>React</span>
-                            <span>Node.js</span>
-                            <span>UI/UX</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <div class="sep" role="separator" aria-hidden="true"></div>
 
-        <section id="projects" class="section">
-            <h2>My Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image"></div>
-                    <h3>Project 1</h3>
-                    <p>A brief description of the project and the technologies used.</p>
-                    <a href="#" class="btn small">View Project</a>
-                </div>
-                <div class="project-card">
-                    <div class="project-image"></div>
-                    <h3>Project 2</h3>
-                    <p>A brief description of the project and the technologies used.</p>
-                    <a href="#" class="btn small">View Project</a>
-                </div>
-                <div class="project-card">
-                    <div class="project-image"></div>
-                    <h3>Project 3</h3>
-                    <p>A brief description of the project and the technologies used.</p>
-                    <a href="#" class="btn small">View Project</a>
-                </div>
+    <!-- Projects -->
+    <section id="projects" class="section" aria-label="Projects">
+      <h2>Featured Projects</h2>
+      <p class="muted">A few things I’ve built and shipped.</p>
+      <div class="grid" role="list">
+        <!-- Project Card 1 -->
+        <article class="card" role="listitem">
+          <img src="assets/offtech.jpg" alt="Screenshot of OFFTECh Streamlit app classifying URLs" loading="lazy" />
+          <div class="body">
+            <div class="meta">
+              <span class="chip">Python</span>
+              <span class="chip">Streamlit</span>
+              <a href="#" aria-label="View live demo">Live</a>
+              <a href="https://github.com/sivaprakash-stackpy" target="_blank" rel="noopener">Code</a>
             </div>
-        </section>
+            <h3>OFFTECh URL Risk Analyzer</h3>
+            <p class="muted">Extracts links from pages, classifies phishing/defacement using TensorFlow with heuristic fallback, exports JSON reports.</p>
+          </div>
+        </article>
+        <!-- Project Card 2 -->
+        <article class="card" role="listitem">
+          <img src="assets/portfolio.jpg" alt="Modern portfolio UI screenshot" loading="lazy" />
+          <div class="body">
+            <div class="meta">
+              <span class="chip">HTML/CSS/JS</span>
+              <a href="#" aria-label="View live site">Live</a>
+              <a href="https://github.com/sivaprakash-stackpy/Portfolio" target="_blank" rel="noopener">Code</a>
+            </div>
+            <h3>Personal Portfolio</h3>
+            <p class="muted">Responsive, accessible, fast. Built with progressive enhancement and subtle animations.</p>
+          </div>
+        </article>
+        <!-- Project Card 3 -->
+        <article class="card" role="listitem">
+          <img src="assets/automation.jpg" alt="Data automation workflow diagram" loading="lazy" />
+          <div class="body">
+            <div class="meta">
+              <span class="chip">Automation</span>
+              <span class="chip">APIs</span>
+              <a href="#" aria-label="Read case study">Case Study</a>
+            </div>
+            <h3>Automation Toolkit</h3>
+            <p class="muted">Python utilities for scraping, parsing, and reporting with robust retries and logging.</p>
+          </div>
+        </article>
+      </div>
+    </section>
 
-        <section id="contact" class="section">
-            <h2>Get In Touch</h2>
-            <div class="contact-content">
-                <p>Feel free to reach out for collaborations or just a friendly hello</p>
-                <a href="mailto:sivaprakash4112@gmail.com" class="btn primary">Email Me</a>
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/in/sivaprakash-sivakumar/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/sivaprakash-stackpy" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://medium.com/@sivaprakash4112" target="_blank" title="Medium"><i class="fab fa-medium"></i></a>
-                </div>
-            </div>
-        </section>
-    </main>
+    <div class="sep" role="separator" aria-hidden="true"></div>
+
+    <!-- Gallery -->
+    <section id="gallery" class="section" aria-label="Gallery">
+      <h2>Gallery</h2>
+      <p class="muted">Drop your screenshots or photos into <code>/assets</code> and update the filenames below.</p>
+      <div class="gallery">
+        <img src="assets/shot1.jpg" alt="Project screenshot 1" loading="lazy">
+        <img src="assets/shot2.jpg" alt="Project screenshot 2" loading="lazy">
+        <img src="assets/shot3.jpg" alt="Project screenshot 3" loading="lazy">
+        <img src="assets/shot4.jpg" alt="Project screenshot 4" loading="lazy">
+        <img src="assets/shot5.jpg" alt="Project screenshot 5" loading="lazy">
+        <img src="assets/shot6.jpg" alt="Project screenshot 6" loading="lazy">
+      </div>
+    </section>
+
+    <div class="sep" role="separator" aria-hidden="true"></div>
+
+    <!-- Experience / Timeline -->
+    <section id="experience" class="section" aria-label="Experience timeline">
+      <h2>Experience</h2>
+      <ol class="timeline">
+        <li class="timeline-item">
+          <span class="dot" aria-hidden="true"></span>
+          <h4>Analyst – Merkle (Dentsu)</h4>
+          <p>Automation & Python Development • 2022–2024</p>
+        </li>
+        <li class="timeline-item">
+          <span class="dot" aria-hidden="true"></span>
+          <h4>Freelance IT Services</h4>
+          <p>Support, hardware servicing, CCTV • since 2019</p>
+        </li>
+        <li class="timeline-item">
+          <span class="dot" aria-hidden="true"></span>
+          <h4>MSc Cybersecurity – NCI</h4>
+          <p>Malware Analysis, Cryptography, Cloud Security • 2024–2025</p>
+        </li>
+      </ol>
+    </section>
+
+    <div class="sep" role="separator" aria-hidden="true"></div>
+
+    <!-- Contact -->
+    <section id="contact" class="section" aria-label="Contact form">
+      <h2>Contact</h2>
+      <form id="contact-form">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px">
+          <input name="name" placeholder="Your name" aria-label="Your name" required>
+          <input type="email" name="email" placeholder="Your email" aria-label="Your email" required>
+        </div>
+        <textarea name="message" rows="5" placeholder="Say hello…" aria-label="Message" required></textarea>
+        <button type="submit" aria-label="Send message">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M22 2L11 13" stroke="#0b0e14" stroke-width="2"/><path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="#0b0e14" stroke-width="2"/></svg>
+          Send
+        </button>
+        <p id="form-status" class="muted" role="status" aria-live="polite"></p>
+      </form>
+    </section>
 
     <footer>
-        <p>&copy; <span id="year"></span> Your Name. All rights reserved.</p>
+      <div class="sep" role="separator" aria-hidden="true"></div>
+      <p>© <span id="year"></span> Sivaprakash • Built with ❤️, deployed on Vercel.</p>
     </footer>
+  </main>
 
-    <script src="script.js"></script>
+  <script>
+    // Util: year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Fake contact form handler (replace with your backend or Formspree)
+    const form = document.getElementById('contact-form');
+    const statusEl = document.getElementById('form-status');
+    form.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      statusEl.textContent = 'Sending…';
+      try{
+        // Example POST to Formspree; replace with your endpoint
+        // const res = await fetch('https://formspree.io/f/yourid', { method:'POST', body: new FormData(form) });
+        // if(!res.ok) throw new Error('Network');
+        await new Promise(r=>setTimeout(r,800));
+        form.reset();
+        statusEl.textContent = 'Thanks! I will get back to you.';
+      }catch(err){
+        statusEl.textContent = 'Something went wrong. Please email me instead.';
+      }
+    });
+
+    // Optional: simple intersection fade‑in
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.animate([{opacity:0, transform:'translateY(8px)'},{opacity:1, transform:'translateY(0)'}], {duration:500, fill:'forwards'}); io.unobserve(e.target);} });
+    }, {threshold:.1});
+    document.querySelectorAll('.card, .timeline-item, .gallery img').forEach(el=>io.observe(el));
+  </script>
 </body>
 </html>
